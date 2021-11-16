@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.orders.dao.OrdersDao">
+
+    <resultMap id="ordersMap" type="com.orders.entity.Orders">
+        <id column="id" property="id"></id>
+        <result column="date" property="date"></result>
+        <result column="address" property="address"></result>
+        <result column="goods_id" property="goodsId"></result>
+        <result column="sale_num" property="saleNum"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, date, address, goods_id, `sale_num`
+    </sql>
+
+    <select id="findById" resultMap="ordersMap">
+        select
+        <include refid="Base_Column_List" />
+        from orders
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

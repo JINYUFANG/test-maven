@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goods.dao.GoodsDao">
+
+    <resultMap id="goodsMap" type="com.goods.entity.Goods">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="ramark" property="ramark"></result>
+        <result column="cost_prise" property="costPrice"></result>
+        <result column="advice_price" property="advicePrice"></result>
+        <result column="num" property="num"></result>
+        <result column="unit" property="unit"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, name, ramark, `cost_price`, `advice_price`, `num`, unit
+    </sql>
+
+    <select id="findByGoodsId" resultMap="goodsMap">
+        select
+        <include refid="Base_Column_List" />
+        from goods
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
